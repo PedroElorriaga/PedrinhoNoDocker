@@ -32,6 +32,8 @@
 
 &nbsp;		"**for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done**"
 
+
+
 &nbsp;	Instalar as dependências 
 
 &nbsp;		"**# Add Docker's official GPG key:**
@@ -60,6 +62,8 @@
 
 		**sudo apt-get update**"
 
+
+
 &nbsp;	Instalar os pacotes do docker
 
 &nbsp;		"**sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin**"
@@ -74,11 +78,51 @@
 
 
 
-### Comando para o docker iniciar ao executar o WSL no windows
+	Criar o grupo do docker(*O grupo docker é um grupo de usuários do sistema Linux que tem permissão para executar comandos do Docker sem precisar usar sudo.*)
+
+&nbsp;		"**sudo groupadd docker**"
+
+
+
+&nbsp;	Adicione seu usuário para o grupo
+
+&nbsp;		"**sudo usermod -aG docker $USER**"
+
+
+
+&nbsp;	Salve as mudanças
+
+&nbsp;		"**newgrp docker**"
+
+&nbsp;	
+
+&nbsp;	Rode novamente o "**docker run hello-world**" para verificar se você pode rodar o docker sem o sudo
+
+&nbsp;	
+
+### Comando para o docker iniciar ao executar o Ubuntu no windows
 
 &nbsp;	sudo systemctl enable docker.service
 
 &nbsp;	sudo systemctl enable containerd.service
+
+
+
+### Comandos úteis
+
+&nbsp;	service docker status -> Para verificar status do docker
+
+&nbsp;	
+
+&nbsp;	service docker start -> Para iniciar o docker	
+
+
+
+
+
+
+
+
 
 
 
