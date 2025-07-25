@@ -1,0 +1,63 @@
+Semana do docker
+Aqui irei colocar alguns comando uteis do docker para relembrar
+
+
+
+Passos para instalar o Ubuntu corretamente:
+	Vá no Microsoft Store e instale o Ubuntu
+
+  	Abra o Ubuntu que acabou de ser instalado
+
+  	Insira seu usuario e senha novos
+
+  	De um "sudo apt update" para atualizar e verificar se foi instalado corretamente
+
+
+
+Passos para instalar Docker, seguimos com a documentação do docker
+Mas vou colocar o resumo aqui
+ 	
+	Remova pacotes que podem dar conflitos
+		"for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done"
+
+  	Instalar as dependências
+		sudo apt-get update
+		sudo apt-get install ca-certificates curl
+		sudo install -m 0755 -d /etc/apt/keyrings
+		sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+		sudo chmod a+r /etc/apt/keyrings/docker.asc
+		echo \\
+		"deb \[arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \\
+		$(. /etc/os-release \&\& echo "${UBUNTU\_CODENAME:-$VERSION\_CODENAME}") stable" | \\
+		sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+		sudo apt-get update"
+
+	Instalar os pacotes do docker
+		"sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+
+  	Rode o "sudo docker run hello-world" para verificar se a instalação foi executada com sucesso, se sim ira receber algo como
+		Hello from Docker!
+
+	Criar o grupo do docker(*O grupo docker é um grupo de usuários do sistema Linux que tem permissão para executar comandos do Docker sem precisar usar sudo.*)
+		"sudo groupadd docker"
+
+	Adicione seu usuário para o grupo
+ 		 "sudo usermod -aG docker $USER"
+
+  	Salve as mudanças
+		"newgrp docker"
+	
+	Rode novamente o "docker run hello-world" para verificar se você pode rodar o docker sem o sudo
+
+
+
+Comando para o docker iniciar ao executar o Ubuntu no windows
+  	sudo systemctl enable docker.service
+ 	sudo systemctl enable containerd.service
+
+
+
+Comandos úteis
+  	service docker status -> Para verificar status do docker
+ 	service docker start -> Para iniciar o docker
+
