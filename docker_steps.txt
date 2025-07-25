@@ -60,4 +60,28 @@ Comando para o docker iniciar ao executar o Ubuntu no windows
 Comandos úteis
   	service docker status -> Para verificar status do docker
  	service docker start -> Para iniciar o docker
+	docker images -> Lista todas as imagens no repositório local
+	docker rm <id> -> Remove o container do id especificado
+	docker rmi <nome:tag> -> Remove a imagem do repositório local
+	docker run <nome_container> -> Executa um container
+	docker run <nome_container> ls -> Para listar os diretórios dos arquivos
+	docker run --name <definir_nome> <nome_container> -> Executa um container com o nome que definimos 
+	docker container prune -> Remove todos os containers
+	docker rmi $(docker images -q) -> Remove todas as imagens
+
+
+
+Algumas flags
+	Flag	Significado	Uso comum
+	-d	Detached	Roda em background
+	-i	Interactive	Mantém STDIN aberto
+	-t	Terminal (TTY)	Permite terminal colorido/interativo
+	--rm	Remove auto	Limpa após encerrar
+	-v	Volume	Compartilha arquivos
+	-p	Porta	Expõe serviços do container
+	--name	Nome customizado	Facilita gerenciamento
+
+ 
+
+
 
