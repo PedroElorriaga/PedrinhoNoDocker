@@ -64,10 +64,12 @@ Comandos úteis
 	docker rm <id> -> Remove o container do id especificado
 	docker rmi <nome:tag> -> Remove a imagem do repositório local
 	docker run <nome_container> -> Executa um container
-	docker run <nome_container> ls -> Para listar os diretórios dos arquivos
+	docker run <nome_container> ls -> Para listar os pacotes da imagem
 	docker run --name <definir_nome> <nome_container> -> Executa um container com o nome que definimos 
 	docker container prune -> Remove todos os containers
 	docker rmi $(docker images -q) -> Remove todas as imagens
+	docker rename <nome_antigo> <nome_novo> -> Renomeia o container
+	docker exec -it <nome_container> <comando> -> Executa comando dentro do container ex: apt update(atualiza os pacotes do container)
 
 
 
@@ -80,8 +82,16 @@ Algumas flags
 	-v	Volume	Compartilha arquivos
 	-p	Porta	Expõe serviços do container
 	--name	Nome customizado	Facilita gerenciamento
+	-e 	Env		Permite manipular arquivos env
 
- 
 
+Comandos do EXEC
+	-it <nome_container> top -> Mostra os processos ativos do container
+	dpkg -l -> Lista todos os pacotes instalados do container	
+
+
+Atalhos
+	CTRL + C destrava o terminal caso trave
+	CTRL + L limpa terminal
 
 
