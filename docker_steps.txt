@@ -70,6 +70,8 @@ Comandos úteis
 	docker rmi $(docker images -q) -> Remove todas as imagens
 	docker rename <nome_antigo> <nome_novo> -> Renomeia o container
 	docker exec -it <nome_container> <comando> -> Executa comando dentro do container ex: apt update(atualiza os pacotes do container)
+	docker commit <nome_container_a_ser_commitado> <nome_da_nova_imagem> -> Cria uma nova imagem com os pacotes do container_a_ser_commitado
+	docker build -t <novo_nome_da_imagem:versao> <caminho(normalmente .)> -> Constrói a nova imagem a partir das instruções do dockerfile  
 
 
 
@@ -93,5 +95,19 @@ Comandos do EXEC
 Atalhos
 	CTRL + C destrava o terminal caso trave
 	CTRL + L limpa terminal
+
+
+Dockerfile Commandos
+	FROM imagem:versao -> Qual imagem e versão vamos utilizar
+	RUN comandos -> Quais comandos vamos executar no terminal ex: apt update(atualiza os pacotes do container)
+	WORKDIR caminho -> Caminho no qual vamos executar as instruções
+	COPY caminho -> Quais arquivos e para onde vamos copiar estes
+	EXPOSE porta -> Onde vamos expor nossa aplicação
+	ENV nome="variável" -> Variáveis do sistema
+	CMD [ "comandos" ] -> Comandos que serão executados
+
+
+
+
 
 
