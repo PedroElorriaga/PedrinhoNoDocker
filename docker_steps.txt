@@ -63,15 +63,16 @@ Comandos úteis
 	docker images -> Lista todas as imagens no repositório local
 	docker rm <id> -> Remove o container do id especificado
 	docker rmi <nome:tag> -> Remove a imagem do repositório local
-	docker run <nome_container> -> Executa um container
+	docker start <nome_container> -> Executa um container
 	docker run <nome_container> ls -> Para listar os pacotes da imagem
-	docker run --name <definir_nome> <nome_container> -> Executa um container com o nome que definimos 
+	docker run --name <definir_nome> <nome_container> <nome_imagem> -> Executa um container com o nome que definimos 
 	docker container prune -> Remove todos os containers
 	docker rmi $(docker images -q) -> Remove todas as imagens
 	docker rename <nome_antigo> <nome_novo> -> Renomeia o container
 	docker exec -it <nome_container> <comando> -> Executa comando dentro do container ex: apt update(atualiza os pacotes do container)
 	docker commit <nome_container_a_ser_commitado> <nome_da_nova_imagem> -> Cria uma nova imagem com os pacotes do container_a_ser_commitado
-	docker build -t <novo_nome_da_imagem:versao> <caminho(normalmente .)> -> Constrói a nova imagem a partir das instruções do dockerfile  
+	docker build -t <novo_nome_da_imagem:versao> <caminho(normalmente .)> -> Constrói a nova imagem a partir das instruções do dockerfile
+	docker pull <nome_imagem:versao> -> Baixa a imagem do dockerhub
 
 
 
@@ -105,6 +106,18 @@ Dockerfile Commandos
 	EXPOSE porta -> Onde vamos expor nossa aplicação
 	ENV nome="variável" -> Variáveis do sistema
 	CMD [ "comandos" ] -> Comandos que serão executados
+
+
+Subir a imagem no DockerHub
+	docker login -> Para logar no dockerhub pelo terminal
+	docker logout -> Para deslogar 
+
+	Passos depois de logar:
+		docker tag <imagem:versao> <nome_usuario_dockerhub/imagem:versao> -> Para criar uma imagem ja existente com o nome de usuário configurado
+		docker push <nome_usuario_dockerhub/imagem:versao> -> Para subir a imagem depois de
+		
+
+
 
 
 
