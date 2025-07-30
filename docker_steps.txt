@@ -114,7 +114,7 @@ Subir a imagem no DockerHub
 
 	Passos depois de logar:
 		docker tag <imagem:versao> <nome_usuario_dockerhub/imagem:versao> -> Para criar uma imagem ja existente com o nome de usuário configurado
-		docker push <nome_usuario_dockerhub/imagem:versao> -> Para subir a imagem depois de
+		docker push <nome_usuario_dockerhub/imagem:versao> -> Para subir a imagem depois de logar
 		
 
 
