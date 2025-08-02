@@ -1,0 +1,25 @@
+Depois de ter todos os arquivos.Dockerfile configurados fizemos os seguintes passos
+
+1- Buildamos primeiro o mongo.Dockerfile
+
+2- Subimos um container com a imagem do build desse mongo.Dockerfile
+    "docker run -dit -p 27017:27017 --name mongodb-ct --mount source=mongodb,target=/data/db source mongodb-image"
+
+3- Pegamos o ip address usando o comando "docker inspect" e indo em "Networks: -> "IPAddress"
+
+4- Agora eu coloco esse Ip na variavel de ambiente do computador com o "export VARIAVEL=valor"
+
+5- Faço o build da imagem mongo-express.Dockerfile
+    "docker build -t mongoexpress-image -f mongo-express.Dockerfile --build-arg MONGO=$MONGOIP ."
+    --build-arg é onde passamos o parametro de forma dinamica
+
+6- Subimos agora o container com a imagem desse Dockerfile
+    "docker run -dit --name mongoexpress-ct -p 8081:8081 mongoexpress-image"
+
+7- Agora buildamos o app.Dockerfile
+    "docker build -t app-registration-image --build-arg MONGO=$MONGOIP -f app.Dockerfile ."
+
+8- Criei o container do app principal
+    "docker run -dit --name app-registration-ct -p 3000:3000 app-registration-image:latest"
+
+E tudo funcionou corretamente
