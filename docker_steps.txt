@@ -73,6 +73,9 @@ Comandos úteis
 	docker commit <nome_container_a_ser_commitado> <nome_da_nova_imagem> -> Cria uma nova imagem com os pacotes do container_a_ser_commitado
 	docker build -t <novo_nome_da_imagem:versao> <caminho(normalmente .)> -> Constrói a nova imagem a partir das instruções do dockerfile
 	docker pull <nome_imagem:versao> -> Baixa a imagem do dockerhub
+	docker volume rm <nome_volume> -> Remove o volume se não estiver sendo utilizado por nenhum container
+	docker volume create <nome_volume> -> Cria um novo volume
+	docker run --rm <imagem:versao> <comando> -> Podemos rodar nossa imagem e ja excluir assim que ela para de executar
 
 
 
@@ -86,6 +89,7 @@ Algumas flags
 	-p	Porta	Expõe serviços do container
 	--name	Nome customizado	Facilita gerenciamento
 	-e 	Env		Permite manipular arquivos env
+	-s	Size		Permite ver o tamanho do container
 
 
 Comandos do EXEC
@@ -117,6 +121,40 @@ Subir a imagem no DockerHub
 		docker push <nome_usuario_dockerhub/imagem:versao> -> Para subir a imagem depois de logar
 		
 
+Persistência de dados
+	Primeiro, criamos nosso container
+		"docker run -it -v /<caminho_para_persistir_no_container> <imagem>" (repare que nesse exemplo, criamos um novo diretório com a flag -v)
+	
+	Segundo, temos que verificar nosso container usando o inspect
+		"docker inspect <nome container>
+		e buscaremos a informação "Mounts" -> "Source", onde tem o caminho desses dados persistidos 
+	
+	Terceiro, para acessar esse caminho devemos entrar como um "administrador"
+		"sudo su" então inserimos a senha de admin e depois apenas inserir o caminho da segunda etapa no comando "cd <caminho>"
+
+	DICA: 
+		Como criar vários arquivos de uma vez para testar a persistência 
+			"touch <nome_arquivo{1..5}.tipo_do_arquivo(ex: txt)>"
+	
+
+Persistência de dados com Bind Mounts
+	Primeiro, criamos nosso container
+		"docker run -it -v /<nome_pasta_para_persistir>:/<caminho_para_persistir_no_container> <imagem>"
+
+	Por fim
+		Conseguimos visualizar em nosso sistema tudo que for criado em /<nome_pasta_para_persistir> de dentro do container
+		e caso criarmos um novo container apontando para essa pasta, as informações persistira 
+
+
+Persistência de dados com volumes
+	Primeiro, criamos nosso container criando ou utilizando um volume existente
+		"docker run -it -v <nome_volume>:/<caminho_para_persistir_no_container> <imagem>"
+		ou
+		"docker run -it --mount source=<nome_volume>,target=/<caminho_para_persistir_no_container> <imagem>"
+	
+	Por fim
+		Podemos utilizar o "docker volume ls" para verificar os volumes ou acessando o caminho /var/lib/docker/volumes e para
+		verificar o arquivo devemos entrar em _data ja dentro desse caminho dos volumes
 
 
 
