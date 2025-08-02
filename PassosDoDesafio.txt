@@ -1,5 +1,7 @@
 Depois de ter todos os arquivos.Dockerfile configurados fizemos os seguintes passos
 
+ARQUIVOS DO USER-REGISRATION
+
 1- Buildamos primeiro o mongo.Dockerfile
 
 2- Subimos um container com a imagem do build desse mongo.Dockerfile
