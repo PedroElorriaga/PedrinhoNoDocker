@@ -76,6 +76,12 @@ Comandos úteis
 	docker volume rm <nome_volume> -> Remove o volume se não estiver sendo utilizado por nenhum container
 	docker volume create <nome_volume> -> Cria um novo volume
 	docker run --rm <imagem:versao> <comando> -> Podemos rodar nossa imagem e ja excluir assim que ela para de executar
+	docker network create --driver <tipo_de_rede> <nome_rede> -> Cria uma nova rede para fazer as conexões dos containers
+
+	docker rmi $(docker images -q) -> Exclui todas as imagens de uma só vez, funciona para containers também
+	docker compose up -> Instancia o docker-compose.yml 
+	docker compose down -> Derruba o docker-compose.yml
+	docker compose ps -> Vemos os containers que esse docker compose está rodando
 
 
 
@@ -90,6 +96,7 @@ Algumas flags
 	--name	Nome customizado	Facilita gerenciamento
 	-e 	Env		Permite manipular arquivos env
 	-s	Size		Permite ver o tamanho do container
+	--network Rede		Define uma rede para ser utilizada no container
 
 
 Comandos do EXEC
@@ -156,6 +163,15 @@ Persistência de dados com volumes
 		Podemos utilizar o "docker volume ls" para verificar os volumes ou acessando o caminho /var/lib/docker/volumes e para
 		verificar o arquivo devemos entrar em _data ja dentro desse caminho dos volumes
 
+
+
+Manipulando redes no Docker (OBS: Por padrão os containers vem como Bridge)
+	docker network disconnect <nome_rede> <nome_container> -> Desconecta o container de uma rede
+	docker network connect <nome_rede> <nome_container> -> Conecta o container a uma rede
+	docker network inspect <nome_rede> -> Inspeciona os containers que estão conectados a rede
+
+	Dica: Estando os dois containers estando na mesma rede, podemos conecta-los utilizando os nomes dos containers
+		"ping <nome_container>"
 
 
 

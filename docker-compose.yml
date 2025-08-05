@@ -1,0 +1,33 @@
+services:
+  wordpress-service:
+    image: wordpress:6.8.2
+    restart: always
+    container_name: wordpress-ct
+    env_file:
+      - docker-compose.env
+    ports:
+      - 80:80
+    volumes:
+      - wordpress-volume:/var/www/html
+    networks:
+      - blog-network
+    depends_on:
+      - mysql-service
+  mysql-service:
+    image: mysql:latest
+    restart: always
+    container_name: mysql-ct
+    env_file:
+      - docker-compose.env
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - blog-network
+networks:
+  blog-network:
+    driver: bridge
+volumes:
+  wordpress-volume:
+  mysql-volume:
