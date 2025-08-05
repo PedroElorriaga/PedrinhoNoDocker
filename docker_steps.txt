@@ -20,6 +20,9 @@ Mas vou colocar o resumo aqui
 	Remova pacotes que podem dar conflitos
 		"for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done"
 
+	OBS:(Caso der um erro de E: Package 'docker-ce' has no installation candidate..., siga os passos desse chat)
+	https://chatgpt.com/share/68925d2f-8994-8001-9d99-d93b2e9bc1d2
+
   	Instalar as dependências
 		sudo apt-get update
 		sudo apt-get install ca-certificates curl
